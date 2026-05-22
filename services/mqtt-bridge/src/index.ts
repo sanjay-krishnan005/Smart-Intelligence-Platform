@@ -90,12 +90,12 @@ async function processTelemetry(topic: string, payload: Buffer) {
 
   const maxFill = Math.max(...data.compartments.map((c) => c.fillLevel));
   const totalWeight = data.compartments.reduce(
-    (sum, c) => sum + (c.weightKg ?? 0),
-    0
+    (sum: number, c: any) => sum + (c.weightKg ?? 0),
+  0
   );
   const totalWaste = data.compartments.reduce(
-    (sum, c) => sum + (c.wasteCount ?? 0),
-    0
+    (sum: number, c: any) => sum + (c.wasteCount ?? 0),
+  0
   );
 
   await supabase.from("telemetry_events").insert({
